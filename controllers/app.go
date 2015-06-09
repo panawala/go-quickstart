@@ -21,9 +21,6 @@ func (this *baseApiController) Prepare() {
 	header_auth := this.Ctx.Request.Header.Get("Authorization")
 	if header_auth == "" {
 		this.Abort("401")
-		// fmt.Println("header auth is nil")
-		// this.Data["json"] = map[string]string{"error": "authorization is empty"}
-		// this.ServeJson()
 	} else {
 		current_user := map[string]string{"name": "name1"}
 		fmt.Println("the header_Auth is ")
@@ -49,13 +46,7 @@ type ErrorController struct {
 
 func (this *ErrorController) Error401() {
 	this.EnableRender = false
-	// this.Ctx.Output.Header("Content-Type", "application/json")
-	// result, _ := json.Marshal(ResponseMsg{400, "unauthorized"})
 	result := ResponseMsg{400, "unauthorized"}
-	// result := map[string]string{"errcode": "401", "errmsg": "unauthorized"}
-	// fmt.Println(&result)
-	// this.Data["json"] = map[string]string{"errcode": "401", "errmsg": "unauthorized"}
 	this.Data["json"] = result
 	this.ServeJson()
-	// this.Ctx.Output.Body([]byte(result))
 }
