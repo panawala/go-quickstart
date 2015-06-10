@@ -25,8 +25,8 @@ func uptoken(bucketName string) string {
 }
 
 func init() {
-	ACCESS_KEY = "fuI-VbB3VrpleFvmJYVwTaan60h9Yu_hWgpaJRgd"
-	SECRET_KEY = "XdsSJybSynYqQlsuoCoI2sOF5_br-smlB27hfmGH"
+	ACCESS_KEY = ""
+	SECRET_KEY = ""
 }
 
 func UploadFile(data io.Reader, size int64, mime_type string) string {
