@@ -2,7 +2,7 @@ package models
 
 import (
 	"database/sql"
-	"fmt"
+	"github.com/astaxie/beego"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	"time"
@@ -58,11 +58,10 @@ func (this *DBProxy) InitDB() {
 	var err error
 	this.db, err = gorm.Open("mysql", "william:william@/gorm?charset=utf8&parseTime=True")
 	if err != nil {
-		fmt.Println("err happend")
-		fmt.Println(err.Error())
+		beego.Error("err happend", err.Error())
 		return
 	}
-	fmt.Println("init db success")
+	beego.Info("init db success")
 	this.db.DB().SetMaxIdleConns(10)
 	this.db.DB().SetMaxOpenConns(100)
 	this.db.SingularTable(true)
