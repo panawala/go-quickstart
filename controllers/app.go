@@ -3,18 +3,40 @@ package controllers
 import (
 	"fmt"
 	"github.com/astaxie/beego"
+	"reflect"
 )
 
 func init() {
 
 }
 
+type Validator interface {
+	validate()
+}
+
 type baseApiController struct {
 	beego.Controller
+	controller_name string
+}
+
+func (this *baseApiController) validate() {
+	fmt.Println("validate from base api")
 }
 
 func (this *baseApiController) GetCurrentUser(auth string) (auth_str map[string]string, err error) {
 	return map[string]string{"name": auth}, nil
+}
+
+func (this *baseApiController) validate_input() {
+	method := this.Ctx.Request.Method
+	fmt.Println(reflect.TypeOf(this))
+	if method == "POST" {
+		fmt.Println("post .....")
+	}
+	if method == "GET" {
+		fmt.Println("get ....")
+	}
+	this.validate()
 }
 
 func (this *baseApiController) Prepare() {
@@ -33,6 +55,7 @@ func (this *baseApiController) Prepare() {
 		this.Data["current_user"] = current_user
 	}
 
+	this.validate_input()
 }
 
 type ResponseMsg struct {

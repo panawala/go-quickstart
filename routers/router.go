@@ -8,7 +8,7 @@ import (
 
 func init() {
 	beego.ErrorController(&controllers.ErrorController{})
-	beego.Router("/", &controllers.MainController{})
+	beego.Router("/blog/:catId", &controllers.MainController{})
 	beego.Router("/upload", &controllers.ImageController{})
 	beego.Router("/redis", &controllers.RedisController{})
 	beego.Router("/goschema", &controllers.GoSchemaController{})
