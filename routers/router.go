@@ -11,5 +11,5 @@ func init() {
 	beego.Router("/blog/:catId", &controllers.MainController{})
 	beego.Router("/upload", &controllers.ImageController{})
 	beego.Router("/redis", &controllers.RedisController{})
-	beego.Router("/goschema", &controllers.GoSchemaController{})
+	beego.Router("/post", &controllers.PostController{})
 }
